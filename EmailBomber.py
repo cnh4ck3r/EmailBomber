@@ -44,27 +44,27 @@ try:
 	print bcolors.OKGREEN + file1.read() + bcolors.ENDC
 	file1.close()
 except IOError:
-	print('Banner File not found')
+	print('BANNER FILE NOT FOUND')
 
 #Input
 print(bcolors.WARNING + '''
-Choose a Mail Service:
+CHOOSE A MAIL SERVICE:
 1) GMAIL
 2) YAHOO
 3) HOTMAIL/OUTLOOK
 ''' + bcolors.ENDC + '--------------------------------------------------------------')
 try:
-	server = raw_input(bcolors.OKGREEN + 'Mail Server: ' + bcolors.ENDC)
-	user = raw_input(bcolors.OKGREEN + 'Your Email: ' + bcolors.ENDC)
-	pwd = getpass.getpass(bcolors.OKGREEN + 'Password: ' + bcolors.ENDC)
-	to = raw_input(bcolors.OKGREEN + 'To: ' + bcolors.ENDC)
-	subject = raw_input(bcolors.OKGREEN + 'Subject (Optional): ' + bcolors.ENDC)
-	body = raw_input(bcolors.OKGREEN + 'Message: ' + bcolors.ENDC)
-	nomes = input(bcolors.OKGREEN + 'Number of Emails to send: ' + bcolors.ENDC)
+	server = raw_input(bcolors.OKGREEN + 'MAIL SERVER: ' + bcolors.ENDC)
+	user = raw_input(bcolors.OKGREEN + 'YOUR EMAIL: ' + bcolors.ENDC)
+	pwd = getpass.getpass(bcolors.OKGREEN + 'PASSWORD: ' + bcolors.ENDC)
+	to = raw_input(bcolors.OKGREEN + 'TO: ' + bcolors.ENDC)
+	subject = raw_input(bcolors.OKGREEN + 'SUBJECT (OPTIONAL): ' + bcolors.ENDC)
+	body = raw_input(bcolors.OKGREEN + 'MESSAGE: ' + bcolors.ENDC)
+	nomes = input(bcolors.OKGREEN + 'NUMBER OF EMAILS TO SEND: ' + bcolors.ENDC)
 	no = 0
-	message = 'From: ' + user + '\nSubject: ' + subject + '\n' + body
+	message = 'FROM: ' + user + '\nSUBJECT: ' + subject + '\n' + body
 except KeyboardInterrupt:
-	print bcolors.FAIL + '\nCanceled' + bcolors.ENDC
+	print bcolors.FAIL + '\nCANCELED' + bcolors.ENDC
 	sys.exit()
 
 #Gmail
@@ -77,21 +77,21 @@ if server == '1' or server == 'gmail' or server == 'Gmail':
 	try:
 		server.login(user, pwd)
 	except smtplib.SMTPAuthenticationError:
-		print bcolors.FAIL + '''Your Username or Password is incorrect, please try again using the correct credentials
-		Or you need to enable less secure apps
-		On Gmail: https://myaccount.google.com/lesssecureapps ''' + bcolors.ENDC
+		print bcolors.FAIL + '''YOUR USERNAME OR PASSWORD IS INCORRECT, PLEASE TRY AGAIN USING THE CORRECT CREDENTIALS
+		OR YOU NEED TO ENABLE LESS SECURE APPS
+		ON GMAIL: https://myaccount.google.com/lesssecureapps ''' + bcolors.ENDC
 		sys.exit()
 	while no != nomes:
 		try:
 			server.sendmail(user, to, message)
-			print bcolors.WARNING + 'Successfully sent ' + str(no+1) + ' emails' + bcolors.ENDC
+			print bcolors.WARNING + 'SUCCESSFULLY SENT ' + str(no+1) + ' EMAILS' + bcolors.ENDC
 			no += 1
 			time.sleep(.8)
 		except KeyboardInterrupt:
-			print bcolors.FAIL + '\nCanceled' + bcolors.ENDC
+			print bcolors.FAIL + '\nCANCELED' + bcolors.ENDC
 			sys.exit()
 		except:
-			print "Failed to Send "
+			print "FAILED TO SEND "
 	server.close()
 	
 #Yahoo
@@ -102,22 +102,22 @@ elif server == '2' or server == 'Yahoo' or server == 'yahoo':
 	try:
 		server.login(user, pwd)
 	except smtplib.SMTPAuthenticationError:
-		print bcolors.FAIL + '''Your Username or Password is incorrect, please try again using the correct credentials
-		Or you need to enable less secure apps
-		On Yahoo: https://login.yahoo.com/account/security?.scrumb=Tiby8TXUvJt#less-secure-apps
+		print bcolors.FAIL + '''YOUR USERNAME OR PASSWORD IS INCORRECT, PLEASE TRY AGAIN USING THE CORRECT CREDENTIALS
+		OR YOU NEED TO ENABLE LESS SECURE APPS
+		ON YAHOO: https://login.yahoo.com/account/security?.scrumb=tiby8txuvjt#less-secure-apps
 		''' + bcolors.ENDC
 		sys.exit()
 	while no != nomes:
 		try:
 			server.sendmail(user, to, message)
-			print bcolors.WARNING + 'Successfully sent ' + str(no + 1) + ' emails' + bcolors.ENDC
+			print bcolors.WARNING + 'SUCCESSFULLY SENT ' + str(no + 1) + ' EMAILS' + bcolors.ENDC
 			no += 1
 			time.sleep(.8)
 		except KeyboardInterrupt:
-			print bcolors.FAIL + '\nCanceled' + bcolors.ENDC
+			print bcolors.FAIL + '\nCANCELED' + bcolors.ENDC
 			sys.exit()
 		except:
-			print "Failed to Send"
+			print "FAILED TO SEND"
 	server.close()
 	
 #Hotmail/Outlook
@@ -129,24 +129,24 @@ elif server == '3' or server == 'outlook' or server == 'Outlook' or server == 'H
 	try:
 		server.login(user, pwd)
 	except smtplib.SMTPAuthenticationError:
-		print bcolors.FAIL + 'Your Username or Password is incorrect, please try again using the correct credentials' + bcolors.ENDC
+		print bcolors.FAIL + 'YOUR USERNAME OR PASSWORD IS INCORRECT, PLEASE TRY AGAIN USING THE CORRECT CREDENTIALS' + bcolors.ENDC
 		sys.exit()
 	while no != nomes:
 		try:
 			server.sendmail(user, to, message)
-			print bcolors.WARNING + 'Successfully sent ' + str(no + 1) + ' emails' + bcolors.ENDC
+			print bcolors.WARNING + 'SUCCESSFULLY SENT ' + str(no + 1) + ' EMAILS' + bcolors.ENDC
 			no += 1
 			time.sleep(.8)
 		except KeyboardInterrupt:
-			print bcolors.FAIL + '\nCanceled' + bcolors.ENDC
+			print bcolors.FAIL + '\nCANCELED' + bcolors.ENDC
 			sys.exit()
 		except smtplib.SMTPAuthenticationError:
-			print '\nThe username or password you entered is incorrect.'
+			print '\nTHE USERNAME OR PASSWORD YOU ENTERED IS INCORRECT.'
 			sys.exit()
 		except:
-			print "Failed to Send "
+			print "FAILED TO SEND "
 	server.close()
 	
 else:
-	print 'Works only with Gmail, Yahoo, Outlook and Hotmail.'
+	print 'WORKS ONLY WITH GMAIL, YAHOO, OUTLOOK AND HOTMAIL.'
 	sys.exit()
